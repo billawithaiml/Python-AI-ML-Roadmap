@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Python for AI/ML: ৩০ টপিকের রোডম্যাপ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F7FB; --surface:#FFFFFF; --ink:#13203A; --muted:#5A6882; --line:#DCE3EE;
+  --blue:#2F6FB5; --yellow:#FFC93C;
+  --c1:#2F6FB5; --c2:#0E9F8E; --c3:#E0782B; --c4:#7A55C9; --c5:#CF4B6A; --c6:#3F8F3A; --c7:#13203A;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1726; --surface:#17223A; --ink:#EAF0FB; --muted:#9AA8C4; --line:#2A3752;
+    --c1:#5B9BE0; --c2:#2CC4B0; --c3:#F29A55; --c4:#A184E8; --c5:#EE7893; --c6:#6FC468; --c7:#C9D6F0;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1726; --surface:#17223A; --ink:#EAF0FB; --muted:#9AA8C4; --line:#2A3752;
+  --c1:#5B9BE0; --c2:#2CC4B0; --c3:#F29A55; --c4:#A184E8; --c5:#EE7893; --c6:#6FC468; --c7:#C9D6F0;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;font-size:17px;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.display{font-family:"Bricolage Grotesque","Hind Siliguri",system-ui,sans-serif}
+
+/* hero */
+header{padding:56px 0 28px}
+.brand{display:inline-block;font-weight:600;color:var(--muted);margin-bottom:14px}
+h1{font-size:clamp(34px,7vw,60px);line-height:1.12;margin:0 0 14px;font-weight:800;letter-spacing:-.01em}
+.lead{color:var(--muted);max-width:56ch;margin:0 0 30px;font-size:18px}
+
+/* trail: 30 dots, the memorable element */
+.trail{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px 18px 16px}
+.trail p{margin:0 0 12px;font-weight:600}
+.dots{display:grid;grid-template-columns:repeat(10,1fr);gap:8px}
+.dots a{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;text-decoration:none;background:var(--col);transition:transform .15s}
+.dots a:hover{transform:scale(1.15)}
+.dots a:focus-visible,summary:focus-visible,.theme:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:14px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--col);margin-right:6px}
+
+/* step sections */
+.step{margin-top:56px}
+.step-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px solid var(--col);padding-bottom:10px;margin-bottom:16px}
+.step-head h2{margin:0;font-size:28px;font-weight:800}
+.step-head .count{margin-left:auto;color:var(--muted);font-size:15px;white-space:nowrap}
+.step-head .en{color:var(--col);font-weight:600}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:14px 16px;font-weight:600;font-size:18px}
+summary::-webkit-details-marker{display:none}
+.num{flex:none;width:38px;height:38px;border-radius:50%;background:var(--col);color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700}
+.tag{margin-left:auto;font-size:13px;font-weight:600;background:var(--yellow);color:#13203A;border-radius:999px;padding:1px 10px;white-space:nowrap}
+.chev{flex:none;width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin-left:6px}
+details[open] .chev{transform:rotate(-135deg)}
+details[open]{border-color:var(--col)}
+ul{margin:0;padding:0 18px 16px 68px}
+li{margin:4px 0;color:var(--ink)}
+li::marker{color:var(--col)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:0 5px}
+
+.intro{margin-top:8px}
+footer{margin-top:64px;padding:28px 0 56px;border-top:1px solid var(--line);color:var(--muted);text-align:center}
+.theme{position:fixed;right:14px;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font:inherit;font-size:14px;cursor:pointer;z-index:5}
+@media (max-width:520px){
+  .dots{grid-template-columns:repeat(6,1fr)}
+  ul{padding-left:36px}
+  summary{font-size:17px}
+  .tag{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<button class="theme" id="theme" type="button">🌙 Dark</button>
+<div class="wrap">
+  <header>
+    <span class="brand">Learn AI with Billah</span>
+    <h1 class="display">Python for AI/ML:<br>৩০ টপিকের রোডম্যাপ</h1>
+    <p class="lead">একদম শূন্য থেকে শুরু। প্রতিটি টপিকে কী কী শিখবে, এক জায়গায়। যেকোনো টপিকে ক্লিক করলে ভেতরের সব পার্ট দেখতে পাবে।</p>
+    <div class="trail">
+      <p>৩০টি এপিসোড, ৭টি ধাপ। যেকোনো বিন্দুতে ক্লিক করে সরাসরি যাও।</p>
+      <div class="dots" id="dots"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+  </header>
+
+  <section class="intro" id="intro"></section>
+  <main id="steps"></main>
+
+  <footer>
+    <p class="display" style="font-size:22px;color:var(--ink);margin:0 0 6px;font-weight:800">৩০ এপিসোড শেষ, তারপর কী?</p>
+    <p style="margin:0">Python-এর ভিত্তি পাকা হলে পরের ধাপ: Data, তারপর Machine Learning।</p>
+  </footer>
+</div>
+
+<script>
+var BN="০১২৩৪৫৬৭৮৯";
+function bn(n){return String(n).replace(/\d/g,function(d){return BN[d]})}
+function pad(n){return n<10?"0"+n:String(n)}
+
+var intro={title:"Ep 00: ভূমিকা (Overview)",items:[
+"Python কী, কে বানিয়েছে (Guido van Rossum, ১৯৯১), নামের গল্প",
+"কোড কীভাবে চলে: Compiled বনাম Interpreted (বই অনুবাদ বনাম লাইভ দোভাষী)",
+"Python-এর বাইটকোড ও PVM (মজার তথ্য)",
+"Python কোথায় ব্যবহার হয়: AI/ML, Data Science, Web, Automation, Cyber Security, Game",
+"Python-এর মূল বৈশিষ্ট্য: সহজ সিনট্যাক্স, ফ্রি, বিশাল লাইব্রেরি, Cross-platform, কমিউনিটি",
+"Java বনাম Python: Hello World তুলনা",
+"৩০ টপিকের রোডম্যাপ"]};
+
+var steps=[
+{name:"শুরু",en:"Basics",topics:[
+ [1,"Installation",0,["python.org থেকে Python ডাউনলোড ও ইনস্টল","\"Add Python to PATH\" কেন জরুরি","IDE কী (VS Code, PyCharm, Jupyter)","VS Code সেটআপ: Python extension ও Code Runner","<code>.py</code> ফাইল বানিয়ে প্রথম কোড চালানো"]],
+ [2,"Comments ও Variables",0,["Single-line comment (<code>#</code>)","Multiline comment (triple quote / docstring)","Variable কী (লেবেল লাগানো বাক্সের উপমা)","Variable নামের নিয়ম","Naming convention: camelCase, PascalCase, snake_case"]],
+ [3,"Data Types",0,["Data type কী ও কেন দরকার","<code>int</code>, <code>float</code>, <code>complex</code>, <code>str</code>, <code>bool</code>, <code>NoneType</code>","<code>type()</code> দিয়ে টাইপ চেক"]],
+ [4,"String ও Type Conversion",0,["String ভেতরে কীভাবে কাজ করে: <code>ord()</code>, <code>chr()</code>, Unicode","String indexing (ধনাত্মক ও ঋণাত্মক)","String slicing: <code>[start:stop:step]</code>, উল্টো করা <code>[::-1]</code>","Type conversion: <code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>","Implicit বনাম Explicit conversion","৭টি Falsy মান"]]]},
+{name:"সিদ্ধান্ত",en:"Decisions",topics:[
+ [5,"Input, Output ও Operators",0,["<code>print()</code>, f-string, একাধিক মান প্রিন্ট","<code>input()</code> (সবসময় string রিটার্ন করে) ও type conversion","Arithmetic, Comparison, Logical, Assignment operator"]],
+ [6,"Conditional Statements",6,["কোডে সিদ্ধান্ত নেওয়া (control flow)","<code>if</code>, <code>if-else</code>, <code>if-elif-else</code>","অনুশীলনী: বড় সংখ্যা, জেন্ডার শুভেচ্ছা, জোড়/বিজোড়, ভোটার চেক, লিপ ইয়ার, তাপমাত্রার সিঁড়ি"]]]},
+{name:"পুনরাবৃত্তি",en:"Loops ও Functions",topics:[
+ [7,"Loops",0,["লুপ কেন দরকার","<code>for</code> বনাম <code>while</code> (বালতির উপমা)"]],
+ [8,"For Loop",13,["<code>range(stop)</code>, <code>range(start, stop)</code>, <code>range(start, stop, step)</code>","সংখ্যা ও string দিয়ে for লুপ","<code>break</code>, <code>continue</code>, <code>else</code> (ট্রাফিক সিগন্যালের উপমা)","অনুশীলনী: নামতা, ফ্যাক্টোরিয়াল, পারফেক্ট নাম্বার, প্রাইম, প্যালিনড্রোম ও আরও"]],
+ [9,"While Loop",4,["<code>while</code> লুপের গঠন","Infinite loop-এর বিপদ","<code>break</code>, <code>continue</code>, <code>else</code> while-এ","অনুশীলনী: অঙ্ক আলাদা করা, সংখ্যা উল্টানো, প্যালিনড্রমিক সংখ্যা, Number Guessing Game"]],
+ [10,"Functions",0,["<code>def</code> দিয়ে ফাংশন বানানো ও কল করা","Parameter বনাম Argument","Positional, Default, Keyword argument"]]]},
+{name:"ডেটা",en:"Data Structures",topics:[
+ [11,"Data Structures",0,["৪টি বিল্ট-ইন structure: List, Tuple, Set, Dictionary","তুলনা: ক্রম, পরিবর্তনযোগ্য কি না, ডুপ্লিকেট, অ্যাক্সেস পদ্ধতি"]],
+ [12,"List",5,["List তৈরি ও অ্যাক্সেস (index, negative index, slicing)","Mutation (এলিমেন্ট বদলানো)","Methods: <code>append</code>, <code>insert</code>, <code>remove</code>, <code>pop</code>, <code>sort</code>, <code>reverse</code>, <code>len</code>","অনুশীলনী: গড়, সবচেয়ে বড় ও ইনডেক্স, দ্বিতীয় বৃহত্তম, sorted কি না ও আরও"]],
+ [13,"Tuple",0,["Tuple কী (immutable list)","কখন tuple ব্যবহার করবে","Methods: <code>index()</code>, <code>count()</code>"]],
+ [14,"Set",0,["Set কী: শুধু unique মান, ক্রম নেই","Union <code>|</code>, Intersection <code>&amp;</code>, Difference <code>-</code>, Symmetric difference <code>^</code>"]],
+ [15,"Dictionary",4,["Key-value জোড়া","পড়া, আপডেট, নতুন key যোগ, <code>del</code> দিয়ে মোছা","<code>.items()</code> দিয়ে traverse","অনুশীলনী: ডিকশনারি মার্জ, value-র যোগফল, ফ্রিকোয়েন্সি গোনা, কমন key-র value যোগ"]]]},
+{name:"সুরক্ষা",en:"Errors ও Files",topics:[
+ [16,"Exception Handling",0,["Error বনাম Exception","<code>try</code>, <code>except</code>, <code>else</code>, <code>finally</code>","<code>raise</code> দিয়ে নিজে exception ছোড়া"]],
+ [17,"File Handling",0,["File mode: <code>r</code>, <code>w</code>, <code>a</code>, <code>x</code>","ফাইল পড়া, লেখা, শেষে যোগ করা","<code>with</code> statement (কেন সবসময় ব্যবহার করবে)"]]]},
+{name:"OOP",en:"Object Oriented Programming",topics:[
+ [18,"OOP Intro",0,["একই প্রোগ্রাম তিন উপায়ে: Imperative, Functional, Object Oriented","OOP-এর ৬টি মূল ধারণা: Classes, Objects, Encapsulation, Inheritance, Polymorphism, Abstraction"]],
+ [19,"Class",0,["Class = ব্লুপ্রিন্ট (স্থপতির নকশার উপমা)","Attribute ও method","Class থেকে object বানানো"]],
+ [20,"Object",0,["Object = class-এর instance","ব্যাগ ফ্যাক্টরির উপমা","একই class থেকে একাধিক আলাদা object"]],
+ [21,"Constructor",0,["<code>__init__</code> কী, কখন চলে","<code>self</code> কী ও কেন লাগে","Object-এর শুরুর ডেটা সেট করা"]],
+ [22,"Attributes ও Methods",0,["Class attribute বনাম Instance attribute","Instance method, Class method (<code>@classmethod</code>), Static method (<code>@staticmethod</code>)"]],
+ [23,"Inheritance",0,["Parent-child সম্পর্ক","ধরন: Single, Multiple, Multilevel","<code>super()</code> ও MRO"]],
+ [24,"Polymorphism",0,["একই method নাম, ভিন্ন আচরণ","Duck typing"]],
+ [25,"Encapsulation",0,["ডেটা ভেতরে সুরক্ষিত রাখা","Public, Protected (<code>_</code>), Private (<code>__</code>)","Getter method"]],
+ [26,"Abstraction",0,["জটিলতা লুকিয়ে সরলতা দেখানো","<code>ABC</code> ও <code>@abstractmethod</code>"]],
+ [27,"Dunder Methods",0,["ম্যাজিক মেথড কী","<code>__str__</code>, <code>__add__</code>, <code>__len__</code>"]]]},
+{name:"অ্যাডভান্সড",en:"Advanced",topics:[
+ [28,"Decorators ও Arguments",0,["Function-ও যে একটা object (function ভেতরে function)","Decorators (উপহারের মোড়কের উপমা)","<code>@</code> সিনট্যাক্স ও বাস্তব উদাহরণ (সময় মাপার decorator)","<code>*args</code> ও <code>**kwargs</code>"]],
+ [29,"Comprehension ও Functional Tools",0,["List, dict, set comprehension","Condition সহ comprehension","Lambda function","<code>map()</code>, <code>filter()</code>, <code>zip()</code>","Comprehension বনাম সাধারণ loop"]],
+ [30,"Modules, Packages ও চ্যালেঞ্জ",6,["<code>import</code>, <code>from ... import</code>, <code>as</code>","নিজের module বানানো","Built-in module: <code>math</code>, <code>random</code>, <code>datetime</code>","<code>pip install</code> দিয়ে বাইরের package","চ্যালেঞ্জ: ৩টি star pattern (ত্রিভুজ, উল্টো ত্রিভুজ, ডায়মন্ড), স্ট্রং নাম্বার, প্রাইম রেঞ্জ, সবচেয়ে বেশিবার আসা এলিমেন্ট"]]]}
+];
+
+var dots=document.getElementById("dots"),legend=document.getElementById("legend"),main=document.getElementById("steps");
+
+// intro
+var ih='<details style="--col:var(--c7)"><summary><span class="num" style="font-size:13px">00</span>'+intro.title+'<span class="chev"></span></summary><ul>';
+intro.items.forEach(function(t){ih+="<li>"+t+"</li>"});
+document.getElementById("intro").innerHTML=ih+"</ul></details>";
+
+steps.forEach(function(s,i){
+  var col="var(--c"+(i+1)+")";
+  var first=s.topics[0][0],last=s.topics[s.topics.length-1][0];
+
+  var l=document.createElement("span");
+  l.style.setProperty("--col",col);
+  l.textContent=s.name;
+  legend.appendChild(l);
+
+  var sec='<section class="step" style="--col:'+col+'"><div class="step-head"><h2 class="display">ধাপ '+bn(i+1)+': '+s.name+'</h2><span class="en">'+s.en+'</span><span class="count">'+bn(s.topics.length)+'টি টপিক</span></div>';
+  s.topics.forEach(function(t){
+    var id="t"+pad(t[0]);
+    var d=document.createElement("a");
+    d.href="#"+id;d.title=t[1];d.textContent=bn(t[0]);
+    d.style.setProperty("--col",col);
+    dots.appendChild(d);
+
+    sec+='<details id="'+id+'"><summary><span class="num">'+bn(pad(t[0]))+'</span>'+t[1]+(t[2]?'<span class="tag">অনুশীলনী '+bn(t[2])+'টি</span>':'')+'<span class="chev"></span></summary><ul>';
+    t[3].forEach(function(x){sec+="<li>"+x+"</li>"});
+    sec+="</ul></details>";
+  });
+  main.insertAdjacentHTML("beforeend",sec+"</section>");
+});
+
+// open a topic when its dot is used
+window.addEventListener("hashchange",function(){
+  var el=document.getElementById(location.hash.slice(1));
+  if(el&&el.tagName==="DETAILS")el.open=true;
+});
+
+// theme toggle
+var btn=document.getElementById("theme"),root=document.documentElement;
+function isDark(){var t=root.getAttribute("data-theme");return t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches}
+function label(){btn.textContent=isDark()?"☀️ Light":"🌙 Dark"}
+btn.addEventListener("click",function(){root.setAttribute("data-theme",isDark()?"light":"dark");label()});
+label();
+</script>
+</body>
+</html>
